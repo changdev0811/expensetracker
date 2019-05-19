@@ -1,0 +1,85 @@
+{% extends "layouts/main_template.html" %}
+{% block css %}
+    {% load static %}
+{% endblock %}
+
+{% block content %}
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+    <!-- BEGIN HEADER -->
+    {% include 'partials/header.html' %}
+    <!-- END HEADER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        {% include 'partials/navbar.html' %}
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <!-- BEGIN PAGE TITLE -->
+                    <div class="page-title">
+                        <h1>Dashboard
+                        </h1>
+                    </div>
+                    <!-- END PAGE TITLE -->
+                </div>
+                <!-- BEGIN PAGE HEAD-->
+                <!-- BEGIN PAGE BREADCRUMB -->
+                <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <a href="/">Home</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <span class="active">Dashboard</span>
+                    </li>
+                </ul>
+                <!-- END PAGE BREADCRUMB -->
+                <!-- BEGIN PAGE BASE CONTENT -->
+                <div class="portlet light portlet-fit bordered">
+                    <div class="portlet-body">
+                        <div class="pricing-content-1">
+                            <div class="row">
+                                {% for project in projects %}
+                                <div class="col-md-2">
+                                    <div class="price-column-container border-active">
+                                        <div class="price-table-head bg-blue">
+                                            <h2 class="no-margin">{{ project.title }}</h2>
+                                        </div>
+                                        <div class="arrow-down border-top-blue"></div>
+                                        <div class="price-table-pricing">
+                                            <h3>
+                                                <sup class="price-sign">$</sup>{{ project.value }}</h3>
+                                            <p>{{ project.status|title }}</p>
+                                        </div>
+                                        <div class="price-table-content">
+                                            <div class="row mobile-padding">
+                                                <div class="col-xs-12 text-left mobile-padding"><strong>Customer Name: </strong>{{ project.customer.name }}</div>
+                                                <div class="col-xs-12 text-left mobile-padding"><strong>Customer Order No: </strong>{{ project.customer_order_no }}</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="arrow-down arrow-grey"></div>
+
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PAGE BASE CONTENT -->
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

@@ -1,0 +1,86 @@
+<div class="portlet">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-folder"></i>Project
+        </div>
+        <div class="actions btn-set">
+            <a href="{% url 'tracker:project' %}" name="back" class="btn btn-secondary-outline">
+                <i class="fa fa-angle-left"></i> Back</a>
+            <button class="btn btn-success">
+                <i class="fa fa-check"></i> Save
+            </button>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="tabbable-bordered">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#tab_general" data-toggle="tab"> General </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_general">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Title:
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="title" value="{{ project.title }}" placeholder="" required></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Description:
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="5" name="description" placeholder="" required>{{ project.description }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Customer Name:
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <select class="table-group-action-input form-control input-medium" name="customer_id" required>
+                                    <option value="">Select...</option>
+                                    {% for customer in customers %}
+                                        <option value="{{customer.id}}" {% if customer.id == project.customer_id %} selected {% endif %}>{{customer.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Customer Order No:
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="customer_order_no" value="{{ project.customer_order_no }}" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Status:
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <select class="table-group-action-input form-control input-medium" name="status" required>
+                                    <option value="">Select...</option>
+                                    <option value="not started" {% if project.status == "not started" %} selected {% endif %}>Not Started</option>
+                                    <option value="in progress" {% if project.status == "in progress" %} selected {% endif %}>In Progress</option>
+                                    <option value="completed" {% if project.status == "completed" %} selected {% endif %}>Completed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Amount:
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" name="amount" value="{{ project.value }}" placeholder="" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
